@@ -38,7 +38,7 @@ export default function SettingsForm({
   return (
     <form
       action={async (data: FormData) => {
-        await updateProfile(data, userEmail);
+        await updateProfile(data);
         router.push("/profile");
         router.refresh();
       }}
