@@ -10,7 +10,7 @@ import Link from "next/link";
 export default function MobileNav() {
   return (
     <div className="block md:hidden fixed bottom-0 left-0 right-0">
-      <div className="flex text-gray-700 dark:text-gray-300 *:flex *:items-center">
+      <div className="flex text-gray-700 dark:text-gray-300 *:flex *:items-center ">
         <div className="pl-2 bg-white dark:bg-gray-700 rounded-t-xl w-full relative z-10 *:size-12 *:flex *:items-center *:justify-center justify-around">
           <Link href="/" className="">
             <HomeIcon />
@@ -24,7 +24,7 @@ export default function MobileNav() {
             <div className="border-4 size-15 border-transparent">
               <Link
                 href="/create"
-                className="-rotate-45 bg-gradient-to-tr from-ig-orange to-ig-red to-70% size-12 flex items-center justify-center text-white rounded-full"
+                className="-rotate-45 bg-gradient-to-tr from-igOrange to-igRed to-70% size-12 flex items-center justify-center text-white rounded-full"
               >
                 <CameraIcon />
               </Link>
@@ -32,7 +32,7 @@ export default function MobileNav() {
           </div>
         </div>
         <div className="pr-2 w-full bg-white dark:bg-gray-700 rounded-t-xl relative z-10 *:size-12 *:flex *:items-center *:justify-center justify-around">
-          <Link href="/browse" className="text-ig-red dark:text-ig-orange">
+          <Link href="/browse" className="text-igRed dark:text-igOrange">
             <LayoutGridIcon />
           </Link>
           <Link href="/profile" className=" ">

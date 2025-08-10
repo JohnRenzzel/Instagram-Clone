@@ -5,6 +5,7 @@
     text-wrap: balance;
   }
 }
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-igRed: rgb(207, 33, 66);

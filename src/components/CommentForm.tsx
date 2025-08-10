@@ -13,12 +13,12 @@ export default function CommentForm({
   postId: string;
 }) {
   const router = useRouter();
-  const areRef = useRef<HTMLTextAreaElement>(null);
+  const areaRef = useRef<HTMLTextAreaElement>(null);
   return (
     <form
       action={async (data) => {
-        if (areRef.current) {
-          areRef.current.value = "";
+        if (areaRef.current) {
+          areaRef.current.value = "";
         }
         await postComment(data);
         router.refresh();
@@ -31,12 +31,12 @@ export default function CommentForm({
         </div>
         <div className="w-full flex flex-col gap-2">
           <TextArea
-            ref={areRef}
+            ref={areaRef}
             name="text"
-            placeholder="Tell the world what you think"
+            placeholder="Tell the world what you think..."
           />
           <div>
-            <Button>Post Comment</Button>
+            <Button>Post comment</Button>
           </div>
         </div>
       </div>

@@ -11,11 +11,11 @@ export default function DesktopNav() {
   return (
     <div className="hidden md:block px-4 pb-4 w-48 shadow-md shadow-gray-400 dark:shadow-gray-600">
       <div className="top-4 sticky">
-        <img
-          className="dark:invert"
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/800px-Instagram_logo.svg.png"
-          alt=""
-        />
+        <div className="text-2xl font-bold mt-8">
+          <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 bg-clip-text text-transparent dark:from-purple-400 dark:via-pink-400 dark:to-orange-400">
+            FaceGram
+          </span>
+        </div>
         <div className="ml-1 inline-flex flex-col gap-6 mt-8 *:flex *:items-center *:gap-2">
           <Link href={"/"}>
             <HomeIcon />

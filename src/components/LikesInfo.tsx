@@ -1,6 +1,6 @@
 "use client";
 import { likePost, removeLikeFromPost } from "@/actions";
-import { Like, Post } from "@prisma/client";
+import { Like, Post } from "@/generated/prisma";
 import { HeartIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -8,11 +8,11 @@ import { useState } from "react";
 export default function LikesInfo({
   post,
   sessionLike,
-}: // showText = true,
-{
+  showText = true,
+}: {
   post: Post;
   sessionLike: Like | null;
-  // showText?: boolean,
+  showText?: boolean;
 }) {
   const router = useRouter();
   const [likedByMe, setLikedByMe] = useState(!!sessionLike);
@@ -39,8 +39,7 @@ export default function LikesInfo({
           }
         />
       </button>
-      {/* {showText && <p>{post.likesCount} people like this</p>} */}
-      <p>{post.likesCount} people like this</p>
+      {showText && <p>{post.likesCount} people like this</p>}
     </form>
   );
 }

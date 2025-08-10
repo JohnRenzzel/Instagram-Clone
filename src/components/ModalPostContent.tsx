@@ -1,14 +1,9 @@
 import { getSinglePostData } from "@/actions";
-import SinglePostContent from "@/components/SinglePostContent";
+import SinglePostContent from "./SinglePostContent";
 
-export default async function SinglePostPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default async function ModalPostContent({ postId }: { postId: string }) {
   const { post, authorProfile, comments, commentsAuthor, myLike, myBookmark } =
-    await getSinglePostData(id);
+    await getSinglePostData(postId);
   return (
     <SinglePostContent
       post={post}

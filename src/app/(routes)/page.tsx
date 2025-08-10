@@ -1,25 +1,16 @@
 import { auth, signIn, signOut } from "@/auth";
+import Preloader from "@/components/Preloader";
+import UserHome from "@/components/UserHome";
+import { Suspense } from "react";
 
 export default async function Home() {
   const session = await auth();
   return (
     <div className="">
-      test
-      <br />
       {session && (
-        <form
-          action={async () => {
-            "use server";
-            await signOut();
-          }}
-        >
-          <button
-            className="border px-4 py-2 bg-igRed text-white rounded-lg"
-            type="submit"
-          >
-            Logout
-          </button>
-        </form>
+        <Suspense fallback={<Preloader />}>
+          <UserHome session={session} />
+        </Suspense>
       )}
       {!session && (
         <form
@@ -29,10 +20,10 @@ export default async function Home() {
           }}
         >
           <button
-            className="border px-4 py-2 bg-igRed text-white rounded-lg"
+            className="border px-4 py-2 bg-ig-red text-white rounded-lg"
             type="submit"
           >
-            Login with Google
+            Login with google
           </button>
         </form>
       )}

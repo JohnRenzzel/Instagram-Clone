@@ -1,10 +1,15 @@
 "use server";
 import { prisma } from "./db";
 import { auth } from "./auth";
+import { uniq } from "lodash";
 
-export async function getSessionEmailOrThrow() {
+export async function getSessionEmail(): Promise<string | null | undefined> {
   const session = await auth();
-  const userEmail = session?.user?.email;
+  return session?.user?.email;
+}
+
+export async function getSessionEmailOrThrow(): Promise<string> {
+  const userEmail = await getSessionEmail();
   if (!userEmail) {
     throw "Not logged in";
   }
@@ -83,4 +88,85 @@ export async function removeLikeFromPost(data: FormData) {
     },
   });
   await updatePostLikesCount(postId);
+}
+
+export async function getSinglePostData(postId: string) {
+  const post = await prisma.post.findFirstOrThrow({ where: { id: postId } });
+  const authorProfile = await prisma.profile.findFirstOrThrow({
+    where: { email: post.author },
+  });
+  const comments = await prisma.comment.findMany({
+    where: { postId: post.id },
+  });
+  const commentsAuthor = await prisma.profile.findMany({
+    where: {
+      email: { in: uniq(comments.map((c) => c.author)) },
+    },
+  });
+  const sessionEmail = await getSessionEmailOrThrow();
+  const myLike = await prisma.like.findFirst({
+    where: {
+      author: sessionEmail,
+      postId: post.id,
+    },
+  });
+  const myBookmark = await prisma.bookmark.findFirst({
+    where: {
+      author: sessionEmail,
+      postId: post.id,
+    },
+  });
+  return {
+    post,
+    comments,
+    authorProfile,
+    commentsAuthor,
+    myLike,
+    myBookmark,
+  };
+}
+
+export async function followProfile(profileIdToFollow: string) {
+  const sessionProfile = await prisma.profile.findFirstOrThrow({
+    where: { email: await getSessionEmailOrThrow() },
+  });
+  await prisma.follower.create({
+    data: {
+      followingProfileEmail: sessionProfile.email,
+      followingProfileId: sessionProfile.id,
+      followedProfileId: profileIdToFollow,
+    },
+  });
+}
+
+export async function unfollowProfile(profileIdToFollow: string) {
+  const sessionProfile = await prisma.profile.findFirstOrThrow({
+    where: { email: await getSessionEmailOrThrow() },
+  });
+  await prisma.follower.deleteMany({
+    where: {
+      followingProfileEmail: sessionProfile.email,
+      followingProfileId: sessionProfile.id,
+    },
+  });
+}
+
+export async function bookmarkPost(postId: string) {
+  const sessionEmail = await getSessionEmailOrThrow();
+  await prisma.bookmark.create({
+    data: {
+      author: sessionEmail,
+      postId,
+    },
+  });
+}
+
+export async function unbookmarkPost(postId: string) {
+  const sessionEmail = await getSessionEmailOrThrow();
+  await prisma.bookmark.deleteMany({
+    where: {
+      author: sessionEmail,
+      postId,
+    },
+  });
 }

@@ -16,8 +16,8 @@ export default function PostGrid({ posts }: { posts: Post[] }) {
         columnClassName="pl-4"
       >
         {posts.map((post) => (
-          <Link href={`/posts/${post.id}`} className="mb-4" key={post.id}>
-            <img src={post.image} />
+          <Link href={`/posts/${post.id}`} className="mb-4 block" key={post.id}>
+            <img className="rounded-lg" src={post.image} />
           </Link>
         ))}
       </Masonry>
