@@ -5,6 +5,7 @@ import { Theme } from "@radix-ui/themes";
 import MobileNav from "@/components/MobileNav";
 import DesktopNav from "@/components/DesktopNav";
 import ThemeObserver from "@/components/ThemeObserver";
+import { auth } from "@/auth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,13 +25,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   modal,
 }: Readonly<{
   children: React.ReactNode;
   modal: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="en">
       <body
@@ -39,13 +42,19 @@ export default function RootLayout({
         <ThemeObserver />
         <Theme>
           {modal}
-          <div className="flex min-h-screen">
-            <DesktopNav />
-            <div className="pb-24 ld:pb-4 pt-4 px-4 lg:px-8 flex justify-around w-full">
-              <div className="w-full">{children}</div>
+          {session ? (
+            // Authenticated layout with navigation
+            <div className="flex min-h-screen">
+              <DesktopNav />
+              <div className="pb-24 ld:pb-4 pt-4 px-4 lg:px-8 flex justify-around w-full">
+                <div className="w-full">{children}</div>
+              </div>
+              <MobileNav />
             </div>
-          </div>
-          <MobileNav />
+          ) : (
+            // Unauthenticated layout - just the children (login page)
+            <div className="min-h-screen">{children}</div>
+          )}
         </Theme>
       </body>
     </html>
