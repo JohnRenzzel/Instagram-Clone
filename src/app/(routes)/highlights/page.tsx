@@ -3,7 +3,7 @@ export default function page() {
     <div className="flex flex-col items-center justify-center text-center">
       <div>
         <h3 className="mt-8 text-lg">
-          I'm working on exciting new updates — stay tuned!
+          I&apos;m working on exciting new updates — stay tuned!
         </h3>
       </div>
       <div>
