@@ -42,19 +42,21 @@ export default async function RootLayout({
         <ThemeObserver />
         <Theme>
           {modal}
-          {session ? (
-            // Authenticated layout with navigation
-            <div className="flex min-h-screen">
-              <DesktopNav />
-              <div className="pb-24 ld:pb-4 pt-4 px-4 lg:px-8 flex justify-around w-full">
-                <div className="w-full">{children}</div>
-              </div>
-              <MobileNav />
+          <div className="flex min-h-screen">
+            {/* Only show DesktopNav if user is logged in */}
+            {session && <DesktopNav />}
+
+            <div
+              className={`${
+                session ? "pb-24 ld:pb-4" : ""
+              } pt-4 px-4 lg:px-8 flex justify-around w-full`}
+            >
+              <div className="w-full">{children}</div>
             </div>
-          ) : (
-            // Unauthenticated layout - just the children (login page)
-            <div className="min-h-screen">{children}</div>
-          )}
+          </div>
+
+          {/* Only show MobileNav if user is logged in */}
+          {session && <MobileNav />}
         </Theme>
       </body>
     </html>

@@ -6,14 +6,22 @@ import { Suspense } from "react";
 
 export default async function Home() {
   const session = await auth();
+
+  // If no session, show login button immediately
+  if (!session) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <LoginButton />
+      </div>
+    );
+  }
+
+  // If session exists, show UserHome with loading state
   return (
     <div className="">
-      {session && (
-        <Suspense fallback={<Preloader />}>
-          <UserHome session={session} />
-        </Suspense>
-      )}
-      {!session && <LoginButton />}
+      <Suspense fallback={<Preloader />}>
+        <UserHome session={session} />
+      </Suspense>
     </div>
   );
 }
