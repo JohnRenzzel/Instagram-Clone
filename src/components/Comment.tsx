@@ -1,5 +1,5 @@
 import Avatar from "@/components/Avatar";
-import { Profile } from "@/generated/prisma";
+import { Profile } from "@prisma/client";
 import { format } from "date-fns";
 
 export default function Comment({

@@ -2,7 +2,7 @@ import Preloader from "@/components/Preloader";
 import ProfileNav from "@/components/ProfileNav";
 import ProfilePageInfo from "@/components/ProfilePageInfo";
 import ProfilePosts from "@/components/ProfilePosts";
-import { Follower, Profile } from "@/generated/prisma";
+import { Follower, Profile } from "@prisma/client";
 import { Suspense } from "react";
 
 export default function ProfilePageContent({

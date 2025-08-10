@@ -1,6 +1,6 @@
 "use client";
 import FollowButton from "@/components/FollowButton";
-import { Follower, Profile } from "@/generated/prisma";
+import { Follower, Profile } from "@prisma/client";
 import { CheckIcon, ChevronLeft, CogIcon } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";

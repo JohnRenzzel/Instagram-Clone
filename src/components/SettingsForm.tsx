@@ -1,7 +1,7 @@
 "use client";
 
 import { updateProfile } from "@/actions";
-import { Profile } from "@/generated/prisma";
+import { Profile } from "@prisma/client";
 import { Button, Switch, TextArea, TextField } from "@radix-ui/themes";
 import { CloudUploadIcon } from "lucide-react";
 import { useRouter } from "next/navigation";

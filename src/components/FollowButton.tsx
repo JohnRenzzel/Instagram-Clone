@@ -1,6 +1,6 @@
 "use client";
 import { followProfile, unfollowProfile } from "@/actions";
-import { Follower } from "@/generated/prisma";
+import { Follower } from "@prisma/client";
 import { Button } from "@radix-ui/themes";
 import { UserMinusIcon, UserPlus2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";

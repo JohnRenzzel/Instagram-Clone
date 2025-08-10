@@ -8,7 +8,7 @@ import {
   Like,
   Post,
   Profile,
-} from "@/generated/prisma";
+} from "@prisma/client";
 import Preloader from "./Preloader";
 import BookmarkButton from "./BookmarkButton";
 

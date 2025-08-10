@@ -1,6 +1,6 @@
 "use client";
 import { likePost, removeLikeFromPost } from "@/actions";
-import { Like, Post } from "@/generated/prisma";
+import { Like, Post } from "@prisma/client";
 import { HeartIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

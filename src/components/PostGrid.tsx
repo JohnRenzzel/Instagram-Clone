@@ -1,5 +1,5 @@
 "use client";
-import { Post } from "@/generated/prisma";
+import { Post } from "@prisma/client";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 
