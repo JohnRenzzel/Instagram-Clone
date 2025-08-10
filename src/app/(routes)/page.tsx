@@ -1,4 +1,4 @@
-import { auth, signIn, signOut } from "@/auth";
+import { auth } from "@/auth";
 import LoginButton from "@/components/LoginButton";
 import Preloader from "@/components/Preloader";
 import UserHome from "@/components/UserHome";

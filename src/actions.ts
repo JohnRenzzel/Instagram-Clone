@@ -147,6 +147,7 @@ export async function unfollowProfile(profileIdToFollow: string) {
     where: {
       followingProfileEmail: sessionProfile.email,
       followingProfileId: sessionProfile.id,
+      followedProfileId: profileIdToFollow,
     },
   });
 }

@@ -4,17 +4,10 @@ import { Avatar } from "@radix-ui/themes";
 import { Profile } from "next-auth";
 import LikesInfo from "./LikesInfo";
 import { getSessionEmailOrThrow } from "@/actions";
-import { BookmarkIcon } from "lucide-react";
 import Link from "next/link";
 import BookmarkButton from "./BookmarkButton";
 
-export default async function HomePosts({
-  follows,
-  profiles,
-}: {
-  follows: Follower[];
-  profiles: Profile[];
-}) {
+export default async function HomePosts({ profiles }: { profiles: Profile[] }) {
   const post = await prisma.post.findMany({
     where: {
       author: {
