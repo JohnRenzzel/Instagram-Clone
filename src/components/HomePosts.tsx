@@ -1,5 +1,4 @@
 import { prisma } from "@/db";
-import { Follower } from "@/generated/prisma";
 import { Avatar } from "@radix-ui/themes";
 import { Profile } from "next-auth";
 import LikesInfo from "./LikesInfo";
