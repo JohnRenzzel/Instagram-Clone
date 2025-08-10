@@ -12,9 +12,14 @@ export default async function PostInModal({
 
   return (
     <Modal>
-      <Suspense fallback={<Preloader />}>
-        <ModalPostContent postId={id} />
-      </Suspense>
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center py-8">
+            <Preloader />
+          </div>
+        }
+      ></Suspense>
+      <ModalPostContent postId={id} />
     </Modal>
   );
 }

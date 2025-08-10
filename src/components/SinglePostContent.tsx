@@ -59,7 +59,13 @@ export default function SinglePostContent({
             </div>
           </div>
           <div className="pt-8 border-t border-gray-300 dark:border-gray-700">
-            <Suspense fallback={<Preloader />}>
+            <Suspense
+              fallback={
+                <div className="flex justify-center items-center py-4">
+                  <Preloader />
+                </div>
+              }
+            >
               <SessionCommentForm postId={post.id} />
             </Suspense>
           </div>
