@@ -18,7 +18,7 @@ export default async function SearchResults({ query }: { query: string }) {
   });
   return (
     <div>
-      <h1 className="text-lg mt-4">Search results for "{query}"</h1>
+      <h1 className="text-lg mt-4">{`Search results for "${query}"`}</h1>
       {profiles?.length > 0 && (
         <div className="grid mt-4 sm:grid-cols-2 gap-2">
           {profiles.map((profile) => (
